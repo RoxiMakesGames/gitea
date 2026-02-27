@@ -1,0 +1,44 @@
+{
+  "$schema": "https://sovereign.dev/schemas/package/1.0.0",
+  "id": "gitea",
+  "name": "Gitea — Self-Hosted Git Server",
+  "version": "1.0.0",
+  "description": "Gitea instance managed by the gitea_cplug panel plugin. Provides self-hosted Git forge with repos, CI/CD, container registry, and native Citadel identity integration.",
+  "license": "MIT",
+  "author": {
+    "name": "Sovereign Infrastructure Team",
+    "url": "https://opensovereign.dev"
+  },
+  "kind": "package",
+  "taxonomy": {
+    "tier": "opt",
+    "relations": [
+      { "type": "depends", "target": "sovctl" },
+      { "type": "depends", "target": "traefik" },
+      { "type": "depends", "target": "spm-git-tools" }
+    ]
+  },
+  "tags": ["service", "git", "gitea", "forge", "ci-cd"],
+  "upstream": {
+    "name": "Gitea",
+    "homepage": "https://gitea.com",
+    "license": "MIT"
+  },
+  "contents": {
+    "plugin": {
+      "id": "gitea_cplug",
+      "path": "../../citadel/plugins/core/gitea_cplug",
+      "entry": "index.js",
+      "framework": "react"
+    },
+    "container": {
+      "image": "gitea/gitea:latest",
+      "ports": ["3000", "22"],
+      "compose": "docker/compose.yaml"
+    }
+  },
+  "install": {
+    "strategy": "sequential",
+    "notes": "Deploys Gitea container via sovctl_rs_containers, registers as git:providers + git:servers via gitea_cplug."
+  }
+}
