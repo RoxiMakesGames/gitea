@@ -1,7 +1,7 @@
 {
-  "$schema": "https://sovereign.dev/schemas/package/1.0.0",
+  "$schema": "https://raw.githubusercontent.com/RoxiMakesGames/sovpak/main/schema/sovpak-v3.schema.json",
   "id": "gitea",
-  "name": "Gitea — Self-Hosted Git Server",
+  "name": "Gitea \u2014 Self-Hosted Git Server",
   "version": "1.0.0",
   "description": "Gitea instance managed by the gitea_cplug panel plugin. Provides self-hosted Git forge with repos, CI/CD, container registry, and native Citadel identity integration.",
   "license": "MIT",
@@ -13,12 +13,27 @@
   "taxonomy": {
     "tier": "opt",
     "relations": [
-      { "type": "depends", "target": "sovctl" },
-      { "type": "depends", "target": "traefik" },
-      { "type": "depends", "target": "spm-git-tools" }
+      {
+        "type": "depends",
+        "target": "sovctl"
+      },
+      {
+        "type": "depends",
+        "target": "traefik"
+      },
+      {
+        "type": "depends",
+        "target": "spm-git-tools"
+      }
     ]
   },
-  "tags": ["service", "git", "gitea", "forge", "ci-cd"],
+  "tags": [
+    "service",
+    "git",
+    "gitea",
+    "forge",
+    "ci-cd"
+  ],
   "upstream": {
     "name": "Gitea",
     "homepage": "https://gitea.com",
@@ -33,7 +48,10 @@
     },
     "container": {
       "image": "gitea/gitea:latest",
-      "ports": ["3000", "22"],
+      "ports": [
+        "3000",
+        "22"
+      ],
       "compose": "docker/compose.yaml"
     }
   },
